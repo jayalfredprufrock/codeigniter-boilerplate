@@ -1,4 +1,4 @@
 codeigniter-boilerplate
 =======================
 
-A great starting point for a codeigniter project, preloaded and configured with several useful sparks and libraries.
+A starting point for a Codeigniter 3.0 project, installable via composer and preloaded/configured with several useful sparks and libraries.

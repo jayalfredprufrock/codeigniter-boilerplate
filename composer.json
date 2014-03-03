@@ -1,0 +1,11 @@
+{
+	"description" : "A starting point for a codeigniter 3.0 project, installable via composer and preloaded/configured with several useful sparks and libraries.",
+	"name" : "jayalfredprufrock/codeigniter-boilerplate",
+		"license": "OSL-3.0",
+	"require": {
+		"php": ">=5.3"
+	},
+	"require-dev": {
+		"mikey179/vfsStream": "1.1.*"
+	}
+}
