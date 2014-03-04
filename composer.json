@@ -1,11 +1,23 @@
 {
 	"description" : "A starting point for a codeigniter 3.0 project, installable via composer and preloaded/configured with several useful sparks and libraries.",
 	"name" : "jayalfredprufrock/codeigniter-boilerplate",
-		"license": "OSL-3.0",
+		"license": "MIT",
 	"require": {
-		"php": ">=5.3"
+		"php": ">=5.3",
+		"mnabil/composer-custom-directory-installer": "*",
+		"jayalfredprufrock/codeigniter-language": "*"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
-	}
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "git@github.com:mnabil/composer-installer-plugin.git"
+		},
+		{
+			"type": "vcs",
+			"url": "git@github.com:jayalfredprufrock/codeigniter-language.git"
+		}
+	 ]
 }

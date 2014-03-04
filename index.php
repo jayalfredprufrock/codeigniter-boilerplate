@@ -18,7 +18,7 @@
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2012, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -43,6 +43,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -51,21 +52,23 @@
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
-
-if (defined('ENVIRONMENT'))
+switch (ENVIRONMENT)
 {
-	switch (ENVIRONMENT)
-	{
-		case 'testing':
-		case 'development':
-			error_reporting(-1);
-		break;
-		case 'production':
-			error_reporting(0);
-		break;
-		default:
-			exit('The application environment is not set correctly.');
-	}
+	case 'development':
+		error_reporting(-1);
+		ini_set('display_errors', 1);
+	break;
+
+	case 'testing':
+	case 'production':
+		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
+		ini_set('display_errors', 0);
+	break;
+
+	default:
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'The application environment is not set correctly.';
+		exit(1); // EXIT_* constants not yet defined; 1 is EXIT_ERROR, a generic error.
 }
 
 /*
@@ -74,7 +77,7 @@ if (defined('ENVIRONMENT'))
  *---------------------------------------------------------------
  *
  * This variable must contain the name of your "system" folder.
- * Include the path if the folder is not in the same  directory
+ * Include the path if the folder is not in the same directory
  * as this file.
  */
 	$system_path = 'system';
@@ -85,7 +88,7 @@ if (defined('ENVIRONMENT'))
  *---------------------------------------------------------------
  *
  * If you want this front controller to use a different "application"
- * folder then the default one you can set its name here. The folder
+ * folder than the default one you can set its name here. The folder
  * can also be renamed or relocated anywhere on your server. If
  * you do, use a full server path. For more info please see the user guide:
  * http://codeigniter.com/user_guide/general/managing_apps.html
@@ -133,7 +136,7 @@ if (defined('ENVIRONMENT'))
 	// if your controller is not in a sub-folder within the "controllers" folder
 	// $routing['directory'] = '';
 
-	// The controller class file name.  Example:  Mycontroller
+	// The controller class file name.  Example:  mycontroller
 	// $routing['controller'] = '';
 
 	// The controller function you wish to be called.
@@ -188,7 +191,8 @@ if (defined('ENVIRONMENT'))
 	if ( ! is_dir($system_path))
 	{
 		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-		exit('Your system folder path does not appear to be set correctly. Please open the following file and correct this: '.pathinfo(__FILE__, PATHINFO_BASENAME));
+		echo 'Your system folder path does not appear to be set correctly. Please open the following file and correct this: '.pathinfo(__FILE__, PATHINFO_BASENAME);
+		exit(3); // EXIT_* constants not yet defined; 3 is EXIT_CONFIG.
 	}
 
 /*
@@ -216,30 +220,32 @@ if (defined('ENVIRONMENT'))
 			$application_folder = $_temp;
 		}
 
-		define('APPPATH', $application_folder.'/');
+		define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
 	}
 	else
 	{
-		if ( ! is_dir(BASEPATH.$application_folder.'/'))
+		if ( ! is_dir(BASEPATH.$application_folder.DIRECTORY_SEPARATOR))
 		{
 			header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-			exit('Your application folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF);
+			echo 'Your application folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+			exit(3); // EXIT_* constants not yet defined; 3 is EXIT_CONFIG.
 		}
 
-		define('APPPATH', BASEPATH.$application_folder.'/');
+		define('APPPATH', BASEPATH.$application_folder.DIRECTORY_SEPARATOR);
 	}
 
 	// The path to the "views" folder
 	if ( ! is_dir($view_folder))
 	{
-		if ( ! empty($view_folder) && is_dir(APPPATH.$view_folder.'/'))
+		if ( ! empty($view_folder) && is_dir(APPPATH.$view_folder.DIRECTORY_SEPARATOR))
 		{
 			$view_folder = APPPATH.$view_folder;
 		}
-		elseif ( ! is_dir(APPPATH.'views/'))
+		elseif ( ! is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
 		{
 			header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-			exit('Your view folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF);
+			echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+			exit(3); // EXIT_* constants not yet defined; 3 is EXIT_CONFIG.
 		}
 		else
 		{
@@ -249,11 +255,11 @@ if (defined('ENVIRONMENT'))
 
 	if (($_temp = realpath($view_folder)) !== FALSE)
 	{
-		$view_folder = realpath($view_folder).'/';
+		$view_folder = $_temp.DIRECTORY_SEPARATOR;
 	}
 	else
 	{
-		$view_folder = rtrim($view_folder, '/').'/';
+		$view_folder = rtrim($view_folder, '/\\').DIRECTORY_SEPARATOR;
 	}
 
 	define('VIEWPATH', $view_folder);
