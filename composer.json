@@ -9,12 +9,6 @@
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "git@github.com:jayalfredprufrock/codeigniter-language.git"
-		}
-	],
 	"extra":{
 		
 		"installer-paths":{
