@@ -4,7 +4,6 @@
 		"license": "MIT",
 	"require": {
 		"php": ">=5.3",
-		"mnabil/composer-custom-directory-installer": "*",
 		"jayalfredprufrock/codeigniter-language": "*"
 	},
 	"require-dev": {
@@ -13,17 +12,13 @@
 	"repositories": [
 		{
 			"type": "vcs",
-			"url": "git@github.com:mnabil/composer-installer-plugin.git"
-		},
-		{
-			"type": "vcs",
 			"url": "git@github.com:jayalfredprufrock/codeigniter-language.git"
 		}
 	],
 	"extra":{
 		
 		"installer-paths":{
-			"./application/sparks/": [
+			"./application/sparks/{$name}": [
 				"jayalfredprufrock/codeigniter-language"
 			]
 		}
