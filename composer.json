@@ -20,4 +20,12 @@
 			"url": "git@github.com:jayalfredprufrock/codeigniter-language.git"
 		}
 	 ]
+	"extra":{
+		
+		"installer-paths":{
+			"./application/sparks": [
+				"jayalfredprufrock/codeigniter-language"
+			]
+		}
+	}
 }
