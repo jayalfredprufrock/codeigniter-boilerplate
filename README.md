@@ -2,3 +2,6 @@ codeigniter-boilerplate
 =======================
 
 A starting point for a Codeigniter 3.0 project, installable via composer and preloaded/configured with several useful sparks and libraries.
+
+##Installation
+	composer create-project jayalfredprufrock/codeigniter-boilerplate project-name
