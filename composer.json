@@ -1,7 +1,8 @@
 {
 	"description" : "A starting point for a codeigniter 3.0 project, installable via composer and preloaded/configured with several useful sparks and libraries.",
 	"name" : "jayalfredprufrock/codeigniter-boilerplate",
-		"license": "MIT",
+	"license": "MIT",
+	"type": "project",
 	"require": {
 		"php": ">=5.3",
 		"jayalfredprufrock/codeigniter-language": "*",

@@ -7,7 +7,3 @@ application/cache/*
 application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
-
-application/controllers/Welcome.php
-application/views/welcome_message.php
-
