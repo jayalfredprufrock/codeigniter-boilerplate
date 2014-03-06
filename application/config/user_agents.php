@@ -18,7 +18,7 @@
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2012, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -36,6 +36,8 @@
 */
 
 $platforms = array(
+	'windows nt 6.3'	=> 'Windows 8.1',
+	'windows nt 6.2'	=> 'Windows 8',
 	'windows nt 6.1'	=> 'Windows 7',
 	'windows nt 6.0'	=> 'Windows Vista',
 	'windows nt 5.2'	=> 'Windows 2003',
@@ -49,6 +51,7 @@ $platforms = array(
 	'win98'				=> 'Windows 98',
 	'windows 95'		=> 'Windows 95',
 	'win95'				=> 'Windows 95',
+	'windows phone'			=> 'Windows Phone',
 	'windows'			=> 'Unknown Windows OS',
 	'android'			=> 'Android',
 	'blackberry'		=> 'BlackBerry',
@@ -79,11 +82,15 @@ $platforms = array(
 // The order of this array should NOT be changed. Many browsers return
 // multiple browser types so we want to identify the sub-type first.
 $browsers = array(
+	'OPR'			=> 'Opera',
 	'Flock'			=> 'Flock',
 	'Chrome'		=> 'Chrome',
+	// Opera 10+ always reports Opera/9.80 and appends Version/<real version> to the user agent string
+	'Opera.*?Version'	=> 'Opera',
 	'Opera'			=> 'Opera',
 	'MSIE'			=> 'Internet Explorer',
 	'Internet Explorer'	=> 'Internet Explorer',
+	'Trident.* rv'	=> 'Internet Explorer',
 	'Shiira'		=> 'Shiira',
 	'Firefox'		=> 'Firefox',
 	'Chimera'		=> 'Chimera',
@@ -100,7 +107,9 @@ $browsers = array(
 	'Links'			=> 'Links',
 	'hotjava'		=> 'HotJava',
 	'amaya'			=> 'Amaya',
-	'IBrowse'		=> 'IBrowse'
+	'IBrowse'		=> 'IBrowse',
+	'Maxthon'		=> 'Maxthon',
+	'Ubuntu'		=> 'Ubuntu Web Browser'
 );
 
 $mobiles = array(
@@ -146,6 +155,8 @@ $mobiles = array(
 	'ipaq'			=> 'HP iPaq',
 	'mot-'			=> 'Motorola',
 	'playstation portable'	=> 'PlayStation Portable',
+	'playstation 3'		=> 'PlayStation 3',
+	'playstation vita'  	=> 'PlayStation Vita',
 	'hiptop'		=> 'Danger Hiptop',
 	'nec-'			=> 'NEC',
 	'panasonic'		=> 'Panasonic',
@@ -155,10 +166,10 @@ $mobiles = array(
 	'spv'			=> 'SPV',
 	'zte'			=> 'ZTE',
 	'sendo'			=> 'Sendo',
-	'dsi'			=> 'Nintendo DSi',
-	'ds'			=> 'Nintendo DS',
+	'nintendo dsi'	=> 'Nintendo DSi',
+	'nintendo ds'	=> 'Nintendo DS',
+	'nintendo 3ds'	=> 'Nintendo 3DS',
 	'wii'			=> 'Nintendo Wii',
-	'3ds'			=> 'Nintendo 3DS',
 	'open web'		=> 'Open Web',
 	'openweb'		=> 'OpenWeb',
 
@@ -178,7 +189,7 @@ $mobiles = array(
 	'operamini'		=> 'Opera Mini',
 	'opera mini'	=> 'Opera Mini',
 	'opera mobi'	=> 'Opera Mobile',
-	'fennec'	=> 'Firefox Mobile',
+	'fennec'		=> 'Firefox Mobile',
 
 	// Other
 	'digital paths'	=> 'Digital Paths',
@@ -205,13 +216,15 @@ $mobiles = array(
 $robots = array(
 	'googlebot'		=> 'Googlebot',
 	'msnbot'		=> 'MSNBot',
+	'baiduspider'	=> 'Baiduspider',
 	'bingbot'		=> 'Bing',
 	'slurp'			=> 'Inktomi Slurp',
 	'yahoo'			=> 'Yahoo',
 	'askjeeves'		=> 'AskJeeves',
 	'fastcrawler'	=> 'FastCrawler',
 	'infoseek'		=> 'InfoSeek Robot 1.0',
-	'lycos'			=> 'Lycos'
+	'lycos'			=> 'Lycos',
+	'yandex'		=> 'YandexBot'
 );
 
 /* End of file user_agents.php */

@@ -18,7 +18,7 @@
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2012, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -36,6 +36,24 @@
 |
 */
 $config['migration_enabled'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
+| Migration Type
+|--------------------------------------------------------------------------
+|
+| Migration file names may be based on a sequential identifier or on
+| a timestamp. Options are:
+|
+|   'sequential' = Default migration naming (001_add_blog.php)
+|   'timestamp'  = Timestamp migration naming (20121031104401_add_blog.php)
+|                  Use timestamp format YYYYMMDDHHIISS.
+|
+| If this configuration value is missing the Migration library defaults
+| to 'sequential' for backward compatibility.
+|
+*/
+$config['migration_type'] = 'timestamp';
 
 /*
 |--------------------------------------------------------------------------
@@ -87,7 +105,7 @@ $config['migration_version'] = 0;
 | Also, writing permission is required within the migrations path.
 |
 */
-$config['migration_path'] = APPPATH . 'migrations/';
+$config['migration_path'] = APPPATH.'migrations/';
 
 /* End of file migration.php */
 /* Location: ./application/config/migration.php */
