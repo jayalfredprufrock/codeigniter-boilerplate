@@ -6,7 +6,8 @@
 	"require": {
 		"php": ">=5.3",
 		"jayalfredprufrock/codeigniter-language": "*",
-		"jayalfredprufrock/codeigniter-messages": "*"
+		"jayalfredprufrock/codeigniter-messages": "*",
+		"monolog/monolog": "~1.7"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
